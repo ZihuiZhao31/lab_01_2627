@@ -117,9 +117,9 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g,
 
 
 
-- [ ] Add comments before each line of code in the blocks above, explaining what is happening on each line.
-- [ ] Add some interpretation of the plot (in `markdown`, not as comments), after the code block.
-- [ ] Create a second plot, below, that colours the dots by sex instead of by species.
+- [x] Add comments before each line of code in the blocks above, explaining what is happening on each line.
+- [x] Add some interpretation of the plot (in `markdown`, not as comments), after the code block.
+- [x] Create a second plot, below, that colours the dots by sex instead of by species.
 
 If you don't know how to do something in `R` you have a few options:
 
@@ -129,9 +129,9 @@ If you don't know how to do something in `R` you have a few options:
 
 The next task asks you to *extend* what we have already done using new functionality of `ggplot`.
 
-- [ ] Create a third plot that uses colour for species and changes the *shape* of the points based on the sex.
-- [ ] Commit and push your solutions to GitHub with an informative message.
-- [ ] Make sure your changes are visible on GitHub.
+- [x] Create a third plot that uses colour for species and changes the *shape* of the points based on the sex.
+- [x] Commit and push your solutions to GitHub with an informative message.
+- [x] Make sure your changes are visible on GitHub.
 
 From now on I won't remind you to do this - you should get into the habit of doing it whenever you reach a natural point to commit!
 
@@ -139,6 +139,37 @@ From now on I won't remind you to do this - you should get into the habit of doi
 
 Produce plots to answer the following research questions:
 
-- [ ] On which island are we most likely to find which penguins?
-- [ ] What is the most useful measurement or measurements to distinguish different species of penguin?
-- [ ] Do the measurements given vary significantly with the penguin's genders?
+- [x] On which island are we most likely to find which penguins?
+- [x] What is the most useful measurement or measurements to distinguish different species of penguin?
+- [x] Do the measurements given vary significantly with the penguin's genders?
+```{r}
+# Count penguin species on each island
+ggplot(penguins, aes(x = island, fill = species)) +
+  geom_bar(position = "dodge") +
+  theme_minimal()
+```
+```{r}
+# Compare bill measurements between penguin species
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
+  geom_point() +
+  theme_minimal()
+```
+```{r}
+# Compare body mass between female and male penguins
+ggplot(penguins, aes(x = sex, y = body_mass_g, fill = sex)) +
+  geom_boxplot() +
+  theme_minimal()
+```
+```{r}
+# Compare flipper length between female and male penguins
+ggplot(penguins, aes(x = sex, y = flipper_length_mm, fill = sex)) +
+  geom_boxplot() +
+  theme_minimal()
+```
+
+The island plot shows that Adelie penguins are found on all three islands, Chinstrap penguins are found on Dream, and Gentoo penguins are found on Biscoe. Bill length and bill depth are useful measurements for distinguishing species because the three species form different groups in the plot. The boxplots suggest that male penguins are generally heavier and have longer flippers than female penguins, although there is some overlap.
+
+
+
+
+
